@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Webapp_api.Models.Movies>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+<h2>
+    Create Movie  
+    <p>
+        @Html.ActionLink("New-Movie", "MovieForm", "Movies", null, new { @class = "btn btn-primary" })
+    </p>
+</h2>
+
+    @if (!Model.Any())
+    {
+        <p>We don't have any customers yet.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Movies</th>
+                    <th>Genre</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(customer.Name, "Edit", "Movies", new { id = customer.Id }, null)</td>
+                        <td>@customer.Genre.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }

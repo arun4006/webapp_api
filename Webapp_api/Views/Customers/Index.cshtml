@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Webapp_api.Models.Customers>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet.</p>
+}
+else
+{
+    <table id="customers" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customers</th>
+                <th>MembershipType</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
+                    <td>@customer.MembershipType.Name</td>
+                    <td>
+                        <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@*api/delete_customer/{id}*@
+
+@*@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#customers .js-delete").on("click", function () {
+                if (confirm("Are you sure want to delete this customer?")) {
+                    $.ajax({
+                        url: "api/delete_customer/" + $(this).attr("data-customer-id"),
+                        method: "DELETE",
+                        success: function () {
+                            console.log(url);
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+}*@

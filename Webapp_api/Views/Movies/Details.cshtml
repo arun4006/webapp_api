@@ -1,0 +1,14 @@
+﻿@model Webapp_api.Models.Movies
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2><b>@Model.Name</b></h2>
+<h4>Genre:@Model.Genre.Name</h4>
+<h4>Realease Date:@Model.ReleaseDate</h4>
+<h4>Date Added:@Model.DateAdded</h4>
+<h4>Number in Stocks:@Model.NumberInStock</h4>
+
+
+
